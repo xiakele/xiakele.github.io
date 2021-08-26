@@ -5,8 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
+    <style>
+        textarea{
+            height: 300px;
+            width: 500px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Test</h1>
+    <textarea id="test" placeholder="试着输入小括号"></textarea>
+<script>
+    let test=document.getElementById("test");
+    test.addEventListener("keyup",function(){
+        let bracket = [];
+        for(let i of test.value){
+            if(i==="("){
+                bracket.push(")");
+            }else if(i==="（"){
+                bracket.push("）");
+            }else if(i===")"||i==="）"){
+                bracket.pop();
+            }
+        }
+        test.value+=bracket.reverse().join("");
+    });
+</script>
 </body>
 </html>
