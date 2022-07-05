@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>genSub</title>
+    <script>
+        function gen() {
+            let url = document.querySelector("#url").value
+            document.querySelector("#result").value = encodeURI(`https://sub.xeton.dev/sub?target=clash&new_name=true&url=${encodeURIComponent(url)}&insert=false&interval=21600&config=https%3A%2F%2Fxiakele.github.io%2Fcustom_config.ini`)
+        }
+
+        function copy() {
+            let result = document.querySelector("#result")
+            result.select()
+            document.execCommand("copy")
+        }
+    </script>
+    <style>
+        input,button{
+            margin: 3px;
+            height: 1.5em;
+        }
+        input{
+            width: 50em;
+        }
+        button{
+            width: 5em;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="url" id="url">
+    <button onclick=gen()>submit</button>
+    <br>
+    <input type="url" id="result" disabled=true>
+    <button onclick=copy()>copy</button>
+</body>
+
+</html>
