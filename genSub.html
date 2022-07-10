@@ -9,7 +9,7 @@
     <script>
         function gen() {
             let url = document.querySelector("#url").value
-            document.querySelector("#result").value = encodeURI(`https://sub.xeton.dev/sub?target=clash&new_name=true&url=${encodeURIComponent(url)}&insert=false&interval=21600&config=https%3A%2F%2Fxiakele.github.io%2Fcustom_config.ini`)
+            document.querySelector("#result").value = encodeURI(`https://sub.xeton.dev/sub?target=clash&new_name=true&url=${url}&insert=false&interval=21600&config=https%3A%2F%2Fxiakele.github.io%2Fcustom_config.ini`)
         }
 
         function copy() {
@@ -19,14 +19,17 @@
         }
     </script>
     <style>
-        input,button{
+        input,
+        button {
             margin: 3px;
             height: 1.5em;
         }
-        input{
+
+        input {
             width: 50em;
         }
-        button{
+
+        button {
             width: 5em;
         }
     </style>
@@ -36,8 +39,12 @@
     <input type="url" id="url">
     <button onclick=gen()>submit</button>
     <br>
-    <input type="url" id="result" disabled=true>
+    <input type="url" id="result" readonly="readonly">
     <button onclick=copy()>copy</button>
+    <script>
+        document.querySelector("#url").value = ""
+        document.querySelector("#result").value = ""
+    </script>
 </body>
 
 </html>
