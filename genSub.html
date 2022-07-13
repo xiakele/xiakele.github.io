@@ -9,7 +9,7 @@
     <script>
         function gen() {
             let url = document.querySelector("#url").value
-            document.querySelector("#result").value = encodeURI(`https://sub.xeton.dev/sub?target=clash&new_name=true&url=${url}&insert=false&interval=21600&config=https%3A%2F%2Fxiakele.github.io%2Fcustom_config.ini`)
+            document.querySelector("#result").value = encodeURIComponent(`https://sub.xeton.dev/sub?target=clash&new_name=true&url=${url}&insert=false&interval=21600&config=https%3A%2F%2Fxiakele.github.io%2Fcustom_config.ini`)
         }
 
         function copy() {
