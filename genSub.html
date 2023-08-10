@@ -11,7 +11,10 @@
             let url = document.querySelector("#url").value
             document.querySelector("#result").value = `https://sub.xeton.dev/sub?target=clash&new_name=true&url=${encodeURIComponent(url)}&insert=false&interval=21600&config=https%3A%2F%2Fxiakele.github.io%2Fcustom_config.ini`
         }
-
+        function gen_yy() {
+            let url = document.querySelector("#url").value
+            document.querySelector("#result").value = `https://sub.xeton.dev/sub?target=clash&new_name=true&url=${encodeURIComponent(url)}&insert=false&interval=21600&config=https%3A%2F%2Fxiakele.github.io%2Fcustom_config_yy.ini`
+        }
         function copy() {
             let result = document.querySelector("#result")
             result.select()
@@ -36,8 +39,27 @@
 </head>
 
 <body>
+    <select id="choice">
+        <option value="default" selected>default</option>
+        <option value="yy">一元机场</option>
+    </select>
+    <br>
     <input type="url" id="url">
-    <button onclick=gen()>submit</button>
+    <button onclick=readChoice()>submit</button>
+    <script>
+        function readChoice() {
+            const select = document.querySelector("#choice")
+            const choice = select.options[select.selectedIndex].value
+            switch (choice) {
+                case "yy":
+                    gen_yy()
+                    break
+                default:
+                    gen()
+                    break
+            }
+        }
+    </script>
     <br>
     <input type="url" id="result" readonly="readonly">
     <button onclick=copy()>copy</button>
