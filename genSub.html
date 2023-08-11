@@ -7,13 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>genSub</title>
     <script>
-        function gen() {
-            let url = document.querySelector("#url").value
-            document.querySelector("#result").value = `https://sub.xeton.dev/sub?target=clash&new_name=true&url=${encodeURIComponent(url)}&insert=false&interval=21600&config=https%3A%2F%2Fxiakele.github.io%2Fcustom_config.ini`
-        }
-        function gen_yy() {
-            let url = document.querySelector("#url").value
-            document.querySelector("#result").value = `https://sub.xeton.dev/sub?target=clash&new_name=true&url=${encodeURIComponent(url)}&insert=false&interval=21600&config=https%3A%2F%2Fxiakele.github.io%2Fcustom_config_yy.ini`
+        function gen(vendor) {
+            const url = document.querySelector("#url").value
+            const suffix = (vendor == "default") ? "" : "_" + vendor
+            document.querySelector("#result").value = `https://sub.xeton.dev/sub?target=clash&new_name=true&url=${encodeURIComponent(url)}&insert=false&interval=21600&config=https%3A%2F%2Fxiakele.github.io%2Fcustom_config${suffix}.ini`
         }
         function copy() {
             let result = document.querySelector("#result")
@@ -41,6 +38,7 @@
 <body>
     <select id="choice">
         <option value="default" selected>default</option>
+        <option value="xfss">xfss</option>
         <option value="yy">一元机场</option>
     </select>
     <br>
@@ -50,14 +48,7 @@
         function readChoice() {
             const select = document.querySelector("#choice")
             const choice = select.options[select.selectedIndex].value
-            switch (choice) {
-                case "yy":
-                    gen_yy()
-                    break
-                default:
-                    gen()
-                    break
-            }
+            gen(choice)
         }
     </script>
     <br>
