@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>genSub</title>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+
+    <script>
+        function gen({ url, backend, vendor, fixInfo }) {
+            const subUrl = fixInfo ? url + '%26flag%3Dclash' : url
+            const suffix = (vendor == "default") ? "" : "_" + vendor
+            document.querySelector("#result").value = `https://${backend}/sub?target=clash&new_name=true&url=${encodeURIComponent(subUrl)}&insert=false&interval=21600&config=https%3A%2F%2Fxiakele.github.io%2Fcustom_config${suffix}.ini`
+        }
+        function copy() {
+            let result = document.querySelector("#result")
+            result.select()
+            document.execCommand("copy")
+        }
+    </script>
+</head>
+
+<body class="mdui-theme-layout-auto mdui-theme-primary-teal mdui-theme-accent-teal">
+    <div class="mdui-container">
+        <div class="mdui-toolbar">
+            <span class="mdui-typo-title">订阅转换</span>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">输入链接…</label>
+            <input class="mdui-textfield-input" type="url" id="url" />
+        </div>
+        <script>
+            function readConfig() {
+                const url = document.querySelector("#url")
+                const backend = document.querySelector('#backend')
+                const select = document.querySelector("#choice")
+                const fixInfo = document.querySelector("#fixTrafficInfo")
+                const config = {
+                    url: url.value,
+                    backend: backend.options[backend.selectedIndex].value,
+                    vendor: select.options[select.selectedIndex].value,
+                    fixInfo: fixInfo.checked
+                }
+                gen(config)
+            }
+        </script>
+        <label for="backend">后端：</label>
+        <select class="mdui-select" id="backend">
+            <option value="api.dier.io" selected>dier</option>
+            <option value="sub.xeton.dev">xeton</option>
+        </select>
+        <label for="choice">配置文件：</label>
+        <select class="mdui-select" id="choice">
+            <option value="default" selected>default</option>
+            <option value="xfss">xfss</option>
+            <option value="yy">一元机场</option>
+        </select>
+        <label class="mdui-checkbox">
+            <input type="checkbox" id="fixTrafficInfo" checked />
+            <i class="mdui-checkbox-icon mdui-color-theme-400"></i>
+            修复流量信息
+        </label>
+        <button class="mdui-btn-raised mdui-btn mdui-color-teal-500" onclick=readConfig()>submit</button>
+        <br>
+        <div class="mdui-textfield">
+            <label class="mdui-textfield-label">这是结果…</label>
+            <input class="mdui-textfield-input" type="url" id="result" readonly="readonly">
+        </div>
+        <button class="mdui-btn-raised mdui-btn mdui-color-teal-500" onclick=copy()>copy</button>
+        <script>
+            document.querySelector("#url").value = ""
+            document.querySelector("#result").value = ""
+        </script>
+    </div>
+    <div class="mdui-divider mdui-m-t-3"></div>
+    <footer class="mdui-m-t-1" style="text-align: center; width: 100%;">
+        <p class="mdui-typo-body-1 mdui-typo">credit: <a class="mdui-text-color-theme-400"
+                href="https://github.com/coxine">coxine</a></p>
+    </footer>
+    <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+</body>
+
+</html>
