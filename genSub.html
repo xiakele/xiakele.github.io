@@ -97,11 +97,11 @@
 			<form id="form" onsubmit="readConfig(event)">
 				<mdui-text-field label=" 订阅链接" variant="outlined" type="url" id="url" clearable required></mdui-text-field>
 				<div class="flex-box">
-					<mdui-select variant="outlined" label="后端" value="sub.xeton.dev" id="backend">
+					<mdui-select variant="outlined" label="后端" value="sub.xeton.dev" name="backend" id="backend" required>
 						<mdui-menu-item value="sub.xeton.dev">xeton</mdui-menu-item>
 						<mdui-menu-item value="api.dler.io">dier</mdui-menu-item>
 					</mdui-select>
-					<mdui-select variant="outlined" label="配置文件" value="default" id="choice">
+					<mdui-select variant="outlined" label="配置文件" value="default" name="choice" id="choice" required>
 						<mdui-menu-item value="default" selected>default</mdui-menu-item>
 						<mdui-menu-item value="xfss">xfss</mdui-menu-item>
 						<mdui-menu-item value="yy">一元机场</mdui-menu-item>
