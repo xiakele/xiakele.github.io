@@ -5,16 +5,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	<style>
-		body {
-			opacity: 0;
-		}
-
-		body.ready {
-			opacity: 1;
-			transition: opacity .5s;
-		}
-	</style>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.13.1/cdn/themes/light.css" />
 	<script src="https://cdn.tailwindcss.com"></script>
 	<script type="module"
@@ -26,6 +16,16 @@
 			}
 		}
 	</script>
+	<style>
+		body {
+			opacity: 0;
+		}
+
+		body.ready {
+			opacity: 1;
+			transition: opacity .5s;
+		}
+	</style>
 	<script type="module">
 		await Promise.allSettled([
 			customElements.whenDefined()
