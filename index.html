@@ -28,7 +28,8 @@
 	</style>
 	<script type="module">
 		await Promise.allSettled([
-			customElements.whenDefined()
+			customElements.whenDefined('sl-divider'),
+			customElements.whenDefined('sl-textarea')
 		])
 		document.body.classList.add('ready')
 	</script>
