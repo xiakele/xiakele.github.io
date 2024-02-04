@@ -1,34 +1,69 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
-    <style>
-        textarea{
-            height: 300px;
-            width: 500px;
-        }
-    </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			opacity: 0;
+		}
+
+		body.ready {
+			opacity: 1;
+			transition: opacity .5s;
+		}
+	</style>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.13.1/cdn/themes/light.css" />
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script type="module"
+		src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.13.1/cdn/shoelace-autoloader.js"></script>
+	<script>
+		tailwind.config = {
+			corePlugins: {
+				preflight: false,
+			}
+		}
+	</script>
+	<script type="module">
+		await Promise.allSettled([
+			customElements.whenDefined()
+		])
+		document.body.classList.add('ready')
+	</script>
+
 </head>
+
 <body>
-    <textarea id="test" placeholder="试着输入小括号"></textarea>
-<script>
-    let test=document.getElementById("test");
-    test.addEventListener("keyup",function(){
-        let bracket = [];
-        for(let i of test.value){
-            if(i==="("){
-                bracket.push(")");
-            }else if(i==="（"){
-                bracket.push("）");
-            }else if(i===")"||i==="）"){
-                bracket.pop();
-            }
-        }
-        test.value+=bracket.reverse().join("");
-    });
-</script>
+	<div class="mx-auto w-5/6 max-w-2xl">
+		<header class="text-xl text-center font-semibold">Test Project</header>
+		<sl-divider></sl-divider>
+		<main>
+			<sl-textarea id="textarea" placeholder="Parentheses are cute, especially in pairs..." resize="auto"></sl-textarea>
+		</main>
+	</div>
+	<script>
+		document.querySelector('#textarea').addEventListener('keyup', function () {
+			const content = this.value
+			let counter = 0
+			for (const char of content) {
+				switch (char) {
+					case '(':
+						counter++
+						break
+					case ')':
+						counter--
+						break
+				}
+			}
+			if (counter > 0) {
+				this.value += ')'.repeat(counter)
+			} else if (counter < 0) {
+				this.value = '('.repeat(Math.abs(counter)) + this.value
+			}
+		})
+	</script>
 </body>
+
 </html>
